@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import React from 'react'
 
 // react navigation
@@ -50,10 +50,10 @@ const Details = ({route}:DetailsProps) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 18,
+    marginTop: 6,
     backgroundColor: '#FFFFFF',
   },
   image: {
-    width: 300,
     height: 450,
     resizeMode: 'contain',
   },

@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import React, { PropsWithChildren } from 'react'
 
 type ProductProps = PropsWithChildren<{
@@ -6,15 +6,17 @@ type ProductProps = PropsWithChildren<{
 }>
 
 const ProductItem = ({product}: ProductProps) => {
+  const {width} = useWindowDimensions();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,styles.card,styles.cardElevated]}>
       <Image
       source={{uri: product.imageUrl}}
       style={styles.image}
       />
 
       <View>
-        <Text style={styles.name}>{product.name}</Text>
+        <Text style={styles.name} numberOfLines={0} ellipsizeMode='tail'>{product.name}</Text>
 
         <View style={[styles.rowContainer,styles.ratingContainer]}>
             <View style={styles.ratingContainer}>
@@ -43,8 +45,14 @@ const ProductItem = ({product}: ProductProps) => {
 
 const styles = StyleSheet.create({
     container: {
-      margin: 8,
       flexDirection: 'row',
+      flex: 1,
+      flexGrow: 1,
+      paddingHorizontal: 12,
+      height: 180,
+      alignItems: 'center',
+      resizeMode: 'stretch'
+      
     },
     rowContainer: {
       flexDirection: 'row',
@@ -57,10 +65,10 @@ const styles = StyleSheet.create({
       marginRight: 12,
     },
     name: {
+      marginTop: 12,
       marginBottom: 4,
-  
-      fontSize: 15,
-      fontWeight: '500',
+      fontSize: 14,
+      fontWeight: '600',
     },
     ratingContainer: {
       marginBottom: 8,
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
       marginRight: 4,
     },
     ratingText: {
-      color: '#fff',
+      color: '#000000',
       fontSize: 12,
       fontWeight: '600',
     },
@@ -104,6 +112,21 @@ const styles = StyleSheet.create({
       fontWeight: '600',
       color: '#4bb550',
     },
+    card :{
+      // width :350,
+      // height :360,
+      // marginVertical :12,
+      // marginHorizontal :16,
+      borderRadius :8
+    },
+    cardElevated :{
+      backgroundColor : '#FFFFFF',
+      elevation : 4,
+      shadowOffset :{
+        width :1,
+        height :1
+      }
+    }
   });
 
  export default ProductItem
